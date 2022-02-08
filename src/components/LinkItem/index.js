@@ -1,7 +1,11 @@
 import { FiX, FiCopy } from 'react-icons/fi';
 import './linkItem.css';
 
-export default function linkItem({ fecharModal }) {
+export default function linkItem({ fecharModal, content }) {
+    async function copiarLink() {
+        await navigator.clipboard.writeText(content.link);
+        alert('Link copiado!');
+    }
     return (
         <div className="container-modal">
             <div className="modal-header">
@@ -11,10 +15,10 @@ export default function linkItem({ fecharModal }) {
                 </button>
             </div>
 
-            <span>https://google.com</span>
+            <span>{content.long_url}</span>
 
-            <button className="modal-link">
-                https://bit.ly/487236
+            <button className="modal-link" onClick={copiarLink}>
+                {content.link}
                 <FiCopy size={20} color="#fff" />
             </button>
         </div>
